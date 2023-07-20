@@ -4,4 +4,4 @@ streamlit-chat
 streamlit-extras
 langchain
 python-dotenv
-
+huggingface_hub
