@@ -1,4 +1,4 @@
-# Chat-App-OpenAssistant-API
+# Codex Leicester ai is a chatbot
 The GUI of Codex Leicester is based on streamlit....
 
 ## Clone the Repo:
