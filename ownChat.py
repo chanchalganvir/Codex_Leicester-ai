@@ -18,6 +18,13 @@ with st.sidebar:
     ## Be educated, be organised, and be agitated
     
     ''')
+
+
+st.markdown('''
+    
+    ## The LLM of Codex Leicester was trained by LAION-AI.
+    
+    ''')
     
     
     add_vertical_space(3)
