@@ -1,4 +1,5 @@
-import streamlit as st
+
+ streamlit as st
 from streamlit_chat import message
 from streamlit_extras.colored_header import colored_header
 from streamlit_extras.add_vertical_space import add_vertical_space
@@ -7,7 +8,7 @@ from dotenv import load_dotenv
 
 # load the Environment Variables. 
 load_dotenv()
-st.set_page_config(page_title="OpenAssistant Powered Chat App")
+st.set_page_config(page_title="Codex Leicester Chat App")
 
 # Sidebar contents
 with st.sidebar:
