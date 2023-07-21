@@ -21,7 +21,7 @@ with st.sidebar:
     
     
     add_vertical_space(3)
-    st.markdown('<p style="font-family:monospace; color:darkgreen;">Made by Chanchal C. Ganvir</p>', unsafe_allow_html=True)
+    st.markdown('<p style="font-family:monospace; color:darkgreen;">Made by Chanchal C. Ganvir</p>', unsafe_allow_html=, unsafe_allow_html=True)
 
 st.markdown('<p style="font-family:larg-cursive;font-size:70px; color:RYB Green;">Codex Leicester</p>')
 
