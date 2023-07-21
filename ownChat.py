@@ -15,7 +15,9 @@ with st.sidebar:
     st.title('Your personal AI')
     st.markdown('''
     
-    ## Be educated, be organised, and be agitated
+   ## Be educated, be organised, and be agitated
+    - [LAION-AI](https://laion.ai/)
+    The LLM of Codex Leicester was trained by LAION-AI.
     
     ''')
 
