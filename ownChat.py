@@ -19,13 +19,6 @@ with st.sidebar:
     
     ''')
 
-
-st.markdown('''
-    
-    ## The LLM of Codex Leicester was trained by LAION-AI.
-    
-    ''')
-    
     
     add_vertical_space(3)
     st.markdown('<p style="font-family:monospace; color:darkgreen;">Made by Chanchal C. Ganvir</p>', unsafe_allow_html=True)
