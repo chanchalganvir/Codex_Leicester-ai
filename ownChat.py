@@ -16,9 +16,10 @@ with st.sidebar:
     st.markdown('''
     
    ## Be educated, be organised, and be agitated
-    - [LAION-AI](https://laion.ai/)
+    -[LAION-AI](https://laion.ai/)
     The LLM for Codex Leicester is trained using LAION-AI.
-    -[OpenAssistant/oasst-sft-4-pythia-12b-epoch-3.5](https://huggingface.co/OpenAssistant/oasst-sft-4-pythia-12b-epoch-3.5) LLM model
+    
+- [/oasst-sft-4-pythia-12b-epoch-3.5](https://huggingface.co/OpenAssistant/oasst-sft-4-pythia-12b-epoch-3.5) LLM model
 
 
     ''')
