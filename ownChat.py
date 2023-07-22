@@ -19,8 +19,6 @@ with st.sidebar:
 - [LAION-AI](https://laion.ai/)
     The LLM for Codex Leicester is trained using LAION-AI.
     
-- [/oasst-sft-4-pythia-12b-epoch-3.5](https://huggingface.co/OpenAssistant/oasst-sft-4-pythia-12b-epoch-3.5) LLM model
-
 
     ''')
 
