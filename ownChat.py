@@ -27,9 +27,12 @@ with st.sidebar:
 st.markdown('<p style="font-family:larg-cursive;font-size:40px; color:Green;text-shadow: 14 14 20px black;">Codex Leicester</p>', unsafe_allow_html=True)
 
 def main():
-    # Initialize or retrieve session state
-    generated_responses = st.session_state.get('generated', ["Hey there, great to meet you. I’m Codex Leicester, your personal AI. My goal is to be useful, friendly and providing information. Ask me for advice, for answers, or let’s talk about whatever’s on your mind."])
-    user_inputs = st.session_state.get('user', ['Hi!'])
+    # Generate empty lists for generated and user responses
+    if 'generated' not in st.session_state:
+        st.session_state['generated'] = ["Hey there, great to meet you. I’m Codex Leicester, your personal AI. My goal is to be useful, friendly and providing information. Ask me for advice, for answers, or let’s talk about whatever’s on your mind."]
+
+    if 'user' not in st.session_state:
+        st.session_state['user'] = ['Hi!']
 
     # Layout of input/response containers
     response_container = st.container()
@@ -37,28 +40,41 @@ def main():
     input_container = st.container()
 
     # Get user input
+    def get_text():
+        input_text = st.text_input("You: ", "", key="input")
+        return input_text
+
+    # Apply the user input box
     with input_container:
-        user_input = st.text_input("You: ", "", key="input")
+        user_input = get_text()
 
     # Chain setup for language model
-    llm_chain = st.session_state.get('llm_chain')
-    if llm_chain is None:
+    def chain_setup():
         template = """{question}"""
         prompt = PromptTemplate(template=template, input_variables=["question"])
         llm = HuggingFaceHub(repo_id="OpenAssistant/oasst-sft-4-pythia-12b-epoch-3.5", model_kwargs={"max_new_tokens": 1200})
         llm_chain = LLMChain(llm=llm, prompt=prompt)
-        st.session_state['llm_chain'] = llm_chain
+        return llm_chain
 
     # Generate response
+    def generate_response(question, llm_chain):
+        response = llm_chain.run(question)
+        return response
+
+    # Load language model
+    llm_chain = chain_setup()
+
+    # Main loop for handling user input and generating responses
     with response_container:
         if user_input:
-            response = llm_chain.run(user_input)
-            user_inputs.append(user_input)
-            generated_responses.append(response)
+            response = generate_response(user_input, llm_chain)
+            st.session_state.user.append(user_input)
+            st.session_state.generated.append(response)
 
-        for i, (user, generated) in enumerate(zip(user_inputs, generated_responses)):
-            message(user, is_user=True, key=f"{i}_user")
-            message(generated, key=str(i))
+        if st.session_state['generated']:
+            for i in range(len(st.session_state['generated'])):
+                message(st.session_state['user'][i], is_user=True, key=str(i) + '_user')
+                message(st.session_state["generated"][i], key=str(i))
 
 if __name__ == '__main__':
     main()
