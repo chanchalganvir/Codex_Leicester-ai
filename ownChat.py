@@ -6,24 +6,26 @@ from streamlit_extras.add_vertical_space import add_vertical_space
 from langchain import PromptTemplate, HuggingFaceHub, LLMChain
 from dotenv import load_dotenv
 
+
+
 # load the Environment Variables. 
 load_dotenv()
 st.set_page_config(page_title="Codex Leicester Chat App")
 
 # Sidebar contents
 with st.sidebar:
-    st.title('Your personal Open Assistant')
+    st.title('Your personal AI')
     st.markdown('''
     
     ## Be educated, be organised, and be agitated
     - [LAION-AI](https://laion.ai/)
     The LLM of Codex Leicester was trained by LAION-AI.
-    ## My email ID is [chanchalganvir83@gmail.com](mailto:chanchalganvir83@gmail.com)
+    
     ''')
 
     
     add_vertical_space(3)
-    st.markdown('<p style="font-family:monospace; color:darkgreen;">Made by Chanchal C. Ganvir</p>', unsafe_allow_html=True)
+    st.markdown('<p style="font-family:monospace; color: White;">Made by Chanchal C. Ganvir</p>', unsafe_allow_html=True)
 
 
 st.markdown('<p style="font-family:larg-cursive;font-size:40px; color:Green;text-shadow: 14 14 20px black;">Codex Leicester</p>', unsafe_allow_html=True)
@@ -42,14 +44,18 @@ def main():
 
     # Layout of input/response containers
     response_container = st.container()
-    colored_header(label='', description='', color_name='blue-70')
+    colored_header(label='', description='Enter Text Here', color_name='blue-70')
     input_container = st.container()
+    
+    
 
     # get user input
     def get_text():
-        input_text = st.text_input("You: ", "", key="input")
+        input_text = st.text_input("Search ", "", key="input")
+        
         return input_text
 
+    
     ## Applying the user input box
     with input_container:
         user_input = get_text()
@@ -85,9 +91,6 @@ def main():
             response = generate_response(user_input, llm_chain)
             st.session_state.user.append(user_input)
             st.session_state.generated.append(response)
-            
-            # Clear the input field after generating a response
-            st.script_runner.write("document.querySelector('.stTextInput input').value = ''")
             
         if st.session_state['generated']:
             for i in range(len(st.session_state['generated'])):
