@@ -5,6 +5,8 @@ from streamlit_extras.add_vertical_space import add_vertical_space
 from langchain import PromptTemplate, HuggingFaceHub, LLMChain
 from dotenv import load_dotenv
 
+
+
 # load the Environment Variables. 
 load_dotenv()
 st.set_page_config(page_title="Codex Leicester Chat App")
@@ -19,31 +21,80 @@ with st.sidebar:
     The LLM of Codex Leicester was trained by LAION-AI.
     
     ''')
+
+
     add_vertical_space(3)
     st.markdown('<p style="font-family:monospace; color: White;">Made by Chanchal C. Ganvir</p>', unsafe_allow_html=True)
 
+
 st.markdown('<p style="font-family:larg-cursive;font-size:40px; color:Green;text-shadow: 14 14 20px black;">Codex Leicester</p>', unsafe_allow_html=True)
 
+
 def main():
+
     # Generate empty lists for generated and user.
-    st.session_state.setdefault('generated', ["Hey there, great to meet you. Iâm Codex Leicester, your personal AI. My goal is to be useful, friendly and providing information. Ask me for advice, for answers, or letâs talk about whateverâs on your mind. "])
-    st.session_state.setdefault('user', ['Hi!'])
+    ## Assistant Response
+    if 'generated' not in st.session_state:
+        st.session_state['generated'] = ["Hey there, great to meet you. I’m Codex Leicester, your personal AI. My goal is to be useful, friendly and providing information. Ask me for advice, for answers, or let’s talk about whatever’s on your mind. "]
+
+    ## user question
+    if 'user' not in st.session_state:
+        st.session_state['user'] = ['Hi!']
+
+    # Layout of input/response containers
+    response_container = st.container()
+    colored_header(label='', description='Enter Text Here', color_name='blue-70')
+    input_container = st.container()
+
+
 
     # get user input
-    input_text = st.text_input("Search ", "", key="input")
+    def get_text():
+        input_text = st.text_input("Search ", "", key="input")
 
-    # load LLM only when needed
-    if input_text:
-        llm_chain = chain_setup()
-        response = generate_response(input_text, llm_chain)
-        st.session_state.user.append(input_text)
-        st.session_state.generated.append(response)
+        return input_text
+
+
+    ## Applying the user input box
+    with input_container:
+        user_input = get_text()
+
+    def chain_setup():
+
+
+        template = """<|prompter|>{question}<|endoftext|>
+        <|assistant|>"""
+
+        prompt = PromptTemplate(template=template, input_variables=["question"])
+
+        llm=HuggingFaceHub(repo_id="OpenAssistant/oasst-sft-4-pythia-12b-epoch-3.5", model_kwargs={"max_new_tokens":1200})
+
+        llm_chain=LLMChain(
+            llm=llm,
+            prompt=prompt
+        )
+        return llm_chain
+
+
+    # generate response
+    def generate_response(question, llm_chain):
+        response = llm_chain.run(question)
+        return response
+
+    ## load LLM
+    llm_chain = chain_setup()
 
     # main loop
-    if st.session_state['generated']:
-        for i, (user, generated) in enumerate(zip(st.session_state['user'], st.session_state["generated"])):
-            message(user, is_user=True, key=f"{i}_user")
-            message(generated, key=str(i))
+    with response_container:
+        if user_input:
+            response = generate_response(user_input, llm_chain)
+            st.session_state.user.append(user_input)
+            st.session_state.generated.append(response)
+
+        if st.session_state['generated']:
+            for i in range(len(st.session_state['generated'])):
+                message(st.session_state['user'][i], is_user=True, key=str(i) + '_user')
+                message(st.session_state["generated"][i], key=str(i))
 
 if __name__ == '__main__':
     main()
