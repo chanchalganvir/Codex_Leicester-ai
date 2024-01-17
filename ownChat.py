@@ -25,7 +25,7 @@ with st.sidebar:
 st.markdown('<p style="font-family:larg-cursive;font-size:40px; color:Green;text-shadow: 14 14 20px black;">Codex Leicester</p>', unsafe_allow_html=True)
 
 def main():
-    st.session_state.setdefault('generated', ["Hey there, great to meet you. I’m Codex Leicester, your personal AI. My goal is to be useful, friendly, and provide information. Ask me for advice, for answers, or let’s talk about whatever’s on your mind. "])
+    st.session_state.setdefault('generated', ["Hey there, great to meet you. Iâm Codex Leicester, your personal AI. My goal is to be useful, friendly, and provide information. Ask me for advice, for answers, or letâs talk about whateverâs on your mind. "])
     st.session_state.setdefault('user', ['Hi!'])
 
     input_text = st.text_input("Search ", "", key="input")
