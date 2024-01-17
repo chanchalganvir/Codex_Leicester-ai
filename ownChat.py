@@ -26,7 +26,7 @@ st.markdown('<p style="font-family:larg-cursive;font-size:40px; color:Green;text
 
 def main():
     # Generate empty lists for generated and user.
-    st.session_state.setdefault('generated', ["Hey there, great to meet you. I’m Codex Leicester, your personal AI. My goal is to be useful, friendly and providing information. Ask me for advice, for answers, or let’s talk about whatever’s on your mind. "])
+    st.session_state.setdefault('generated', ["Hey there, great to meet you. Iâm Codex Leicester, your personal AI. My goal is to be useful, friendly and providing information. Ask me for advice, for answers, or letâs talk about whateverâs on your mind. "])
     st.session_state.setdefault('user', ['Hi!'])
 
     # get user input
