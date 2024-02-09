@@ -1,4 +1,4 @@
-
+# Import necessary libraries
 import streamlit as st
 from streamlit_chat import message
 from streamlit_extras.colored_header import colored_header
@@ -6,7 +6,7 @@ from streamlit_extras.add_vertical_space import add_vertical_space
 from langchain import PromptTemplate, HuggingFaceHub, LLMChain
 from dotenv import load_dotenv
 
-# load the Environment Variables. 
+# Load environment variables
 load_dotenv()
 st.set_page_config(page_title="Codex Leicester Chat App")
 
@@ -21,22 +21,22 @@ with st.sidebar:
     
     ''')
 
-    
+    # Add vertical space in the sidebar
     add_vertical_space(3)
+    
+    # Display information about the creator
     st.markdown('<p style="font-family:monospace; color: Teal;">Made by Chanchal C. Ganvir</p>', unsafe_allow_html=True)
 
-
+# Set a styled header for the main page
 st.markdown('<p style="font-family:larg-cursive;font-size:40px; color:Green;text-shadow: 14 14 20px black;">Codex Leicester</p>', unsafe_allow_html=True)
 
-
 def main():
-
-    # Generate empty lists for generated and user.
+    # Generate empty lists for generated and user messages
     ## Assistant Response
     if 'generated' not in st.session_state:
         st.session_state['generated'] = ["Hey there, great to meet you. I’m Codex Leicester, your personal AI. My goal is to be useful, friendly and providing information. Ask me for advice, for answers, or let’s talk about whatever’s on your mind. "]
 
-    ## user question
+    ## User question
     if 'user' not in st.session_state:
         st.session_state['user'] = ['Hi!']
 
@@ -45,7 +45,7 @@ def main():
     colored_header(label='', description='', color_name='blue-70')
     input_container = st.container()
 
-    # get user input
+    # Get user input
     def get_text():
         input_text = st.text_input("You: ", "", key="input")
         return input_text
@@ -55,37 +55,37 @@ def main():
         user_input = get_text()
 
     def chain_setup():
-
-
-        template = """<|prompter|>{question}<|endoftext|>
-        <|assistant|>"""
-        
+        # Set up the template for the language model
+        template = """{question}"""
         prompt = PromptTemplate(template=template, input_variables=["question"])
 
-        llm=HuggingFaceHub(repo_id="OpenAssistant/oasst-sft-4-pythia-12b-epoch-3.5", model_kwargs={"max_new_tokens":1200})
+        # Initialize Hugging Face model
+        llm = HuggingFaceHub(repo_id="OpenAssistant/oasst-sft-4-pythia-12b-epoch-3.5", model_kwargs={"max_new_tokens":1200})
 
-        llm_chain=LLMChain(
+        # Initialize Language Model Chain
+        llm_chain = LLMChain(
             llm=llm,
             prompt=prompt
         )
         return llm_chain
 
-
-    # generate response
+    # Generate response
     def generate_response(question, llm_chain):
         response = llm_chain.run(question)
         return response
 
-    ## load LLM
+    ## Load language model
     llm_chain = chain_setup()
 
-    # main loop
+    # Main loop
     with response_container:
         if user_input:
+            # Generate and store user input and AI response
             response = generate_response(user_input, llm_chain)
             st.session_state.user.append(user_input)
             st.session_state.generated.append(response)
             
+        # Display the conversation history
         if st.session_state['generated']:
             for i in range(len(st.session_state['generated'])):
                 message(st.session_state['user'][i], is_user=True, key=str(i) + '_user')
