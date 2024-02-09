@@ -1,11 +1,10 @@
+
 import streamlit as st
 from streamlit_chat import message
 from streamlit_extras.colored_header import colored_header
 from streamlit_extras.add_vertical_space import add_vertical_space
 from langchain import PromptTemplate, HuggingFaceHub, LLMChain
 from dotenv import load_dotenv
-
-
 
 # load the Environment Variables. 
 load_dotenv()
@@ -17,15 +16,14 @@ with st.sidebar:
     st.markdown('''
     
     ## Be educated, be organised, and be agitated
-    - [LAION-AI](https://laion.ai/)
-    The LLM of Codex Leicester was trained by LAION-AI.
     
     ''')
-
-
+    
+    
     add_vertical_space(3)
-    st.markdown('<p style="font-family:monospace; color: White;">Made by Chanchal C. Ganvir</p>', unsafe_allow_html=True)
+    st.markdown('<p style="font-family:monospace; color:darkgreen;">Made by Chanchal C. Ganvir</p>', unsafe_allow_html=True)
 
+st.markdown('<p style="font-family:'Courier New', monospace; color:darkgreen;">The LLM of Codex Leicester was trained by LAION-AI.</p>', unsafe_allow_html=True)
 
 st.markdown('<p style="font-family:larg-cursive;font-size:40px; color:Green;text-shadow: 14 14 20px black;">Codex Leicester</p>', unsafe_allow_html=True)
 
@@ -43,17 +41,13 @@ def main():
 
     # Layout of input/response containers
     response_container = st.container()
-    colored_header(label='', description='Enter Text Here', color_name='blue-70')
+    colored_header(label='', description='', color_name='blue-70')
     input_container = st.container()
-
-
 
     # get user input
     def get_text():
-        input_text = st.text_input("Search ", "", key="input")
-
+        input_text = st.text_input("You: ", "", key="input")
         return input_text
-
 
     ## Applying the user input box
     with input_container:
@@ -62,9 +56,9 @@ def main():
     def chain_setup():
 
 
-        template = """{question}
-        """
-
+        template = """<|prompter|>{question}<|endoftext|>
+        <|assistant|>"""
+        
         prompt = PromptTemplate(template=template, input_variables=["question"])
 
         llm=HuggingFaceHub(repo_id="OpenAssistant/oasst-sft-4-pythia-12b-epoch-3.5", model_kwargs={"max_new_tokens":1200})
@@ -90,7 +84,7 @@ def main():
             response = generate_response(user_input, llm_chain)
             st.session_state.user.append(user_input)
             st.session_state.generated.append(response)
-
+            
         if st.session_state['generated']:
             for i in range(len(st.session_state['generated'])):
                 message(st.session_state['user'][i], is_user=True, key=str(i) + '_user')
