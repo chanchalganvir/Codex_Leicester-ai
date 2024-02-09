@@ -15,15 +15,16 @@ with st.sidebar:
     st.title('Your personal AI')
     st.markdown('''
     
-    ## Be educated, be organised, and be agitated
+   ## Be educated, be organised, and be agitated
+    - [LAION-AI](https://laion.ai/)
+    The LLM of Codex Leicester was trained by LAION-AI.
     
     ''')
-    
+
     
     add_vertical_space(3)
-    st.markdown('<p style="font-family:monospace; color:darkgreen;">Made by Chanchal C. Ganvir</p>', unsafe_allow_html=True)
+    st.markdown('<p style="font-family:monospace; color: white;">Made by Chanchal C. Ganvir</p>', unsafe_allow_html=True)
 
-st.markdown('<p style="font-family:'Courier New', monospace; color:darkgreen;">The LLM of Codex Leicester was trained by LAION-AI.</p>', unsafe_allow_html=True)
 
 st.markdown('<p style="font-family:larg-cursive;font-size:40px; color:Green;text-shadow: 14 14 20px black;">Codex Leicester</p>', unsafe_allow_html=True)
 
