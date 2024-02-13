@@ -6,6 +6,14 @@ from streamlit_extras.add_vertical_space import add_vertical_space
 from langchain import PromptTemplate, HuggingFaceHub, LLMChain
 from dotenv import load_dotenv
 
+
+headers = {
+
+    "authorization": st.secrets["auth_token"],
+    "content-type": "application/json"
+}
+
+
 # load the Environment Variables. 
 load_dotenv()
 st.set_page_config(page_title="Codex Leicester Chat App")
