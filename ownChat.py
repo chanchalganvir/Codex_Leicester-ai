@@ -27,22 +27,12 @@ with st.sidebar:
     
     ''')
 
-    with st.sidebar:
-    st.markdown(
-        """
-        <style>
-            div[data-testid="stSidebar"][aria-expanded="true"] > div:first-child {
-                background-color: #3498db;  # Change this color to your desired color
-            }
-        </style>
-        """,
-        unsafe_allow_html=True
-    )
+   
 
 
     
     add_vertical_space(3)
-    st.markdown('<p style="font-family:monospace; color: Teal;">Made by Chanchal C. Ganvir</p>', unsafe_allow_html=True)
+    st.markdown('<p style="font-family:monospace; color: Red;">Made by Chanchal C. Ganvir</p>', unsafe_allow_html=True)
 
 
 st.markdown('<p style="font-family:larg-cursive;font-size:40px; color:Green;text-shadow: 14 14 20px black;">Codex Leicester</p>', unsafe_allow_html=True)
