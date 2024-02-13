@@ -1,6 +1,5 @@
 
 import streamlit as st
-import os
 from streamlit_chat import message
 from streamlit_extras.colored_header import colored_header
 from streamlit_extras.add_vertical_space import add_vertical_space
@@ -8,12 +7,7 @@ from langchain import PromptTemplate, HuggingFaceHub, LLMChain
 from dotenv import load_dotenv
 
 
-# Access your secrets using st.secrets
 
-
-# Use the API token as needed in your app
-#st.write("Hugging Face API Token:", api_token)
-st.write(Hugging Face API Token=", st.secrets["HUGGINGFACEHUB_API_TOKEN"])
 
 
 
