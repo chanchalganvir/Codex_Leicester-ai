@@ -19,6 +19,12 @@ st.set_page_config(page_title="Codex Leicester Chat App")
 with st.sidebar:
     st.title('Your personal AI')
     st.markdown('''
+
+    <style>
+            div[data-testid="stSidebar"][aria-expanded="true"] > div:first-child {
+                background-color: #3498db;  # Change this color to your desired color
+            }
+        </style>
     
    ## Be educated, be organised, and be agitated
 - [LAION-AI](https://laion.ai/)
