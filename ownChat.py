@@ -7,11 +7,12 @@ from langchain import PromptTemplate, HuggingFaceHub, LLMChain
 from dotenv import load_dotenv
 
 
-headers = {
+# Access your secrets using st.secrets
+api_token = st.secrets["HUGGINGFACEHUB_API_TOKEN"]
 
-    "authorization": st.secrets["auth_token"],
-    "content-type": "application/json"
-}
+# Use the API token as needed in your app
+st.write("Hugging Face API Token:", api_token)
+
 
 
 # load the Environment Variables. 
