@@ -62,11 +62,10 @@ def main():
     def chain_setup():
 
 
-        #template = """<|prompter|>{question}<|endoftext|>
-        #<|assistant|>"""
+        template = """<|prompter|>{question}<|endoftext|>
+        <|assistant|>"""
 
-       template = """<|prompter|> <|endoftext|>
-        #<|assistant|>"""
+     
         
         prompt = PromptTemplate(template=template, input_variables=["question"])
 
