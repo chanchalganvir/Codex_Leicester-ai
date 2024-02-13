@@ -20,17 +20,25 @@ with st.sidebar:
     st.title('Your personal AI')
     st.markdown('''
 
-    <style>
-            div[data-testid="stSidebar"][aria-expanded="true"] > div:first-child {
-                background-color: #3498db;  # Change this color to your desired color
-            }
-        </style>
     
    ## Be educated, be organised, and be agitated
 - [LAION-AI](https://laion.ai/)
     The LLM for Codex Leicester is trained using LAION-AI.
     
     ''')
+
+    with st.sidebar:
+    st.markdown(
+        """
+        <style>
+            div[data-testid="stSidebar"][aria-expanded="true"] > div:first-child {
+                background-color: #3498db;  # Change this color to your desired color
+            }
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
+
 
     
     add_vertical_space(3)
