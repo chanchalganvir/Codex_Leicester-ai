@@ -65,7 +65,8 @@ def main():
         #template = """<|prompter|>{question}<|endoftext|>
         #<|assistant|>"""
 
-       template = """{question}"""
+       template = """<|prompter|> <|endoftext|>
+        #<|assistant|>"""
         
         prompt = PromptTemplate(template=template, input_variables=["question"])
 
