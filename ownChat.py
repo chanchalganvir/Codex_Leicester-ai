@@ -8,10 +8,11 @@ from dotenv import load_dotenv
 
 
 # Access your secrets using st.secrets
-api_token = st.secrets["HUGGINGFACEHUB_API_TOKEN"]
+
 
 # Use the API token as needed in your app
-st.write("Hugging Face API Token:", api_token)
+#st.write("Hugging Face API Token:", api_token)
+st.write(Hugging Face API Token=", st.secrets["HUGGINGFACEHUB_API_TOKEN"])
 
 
 
