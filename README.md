@@ -2,6 +2,10 @@
 
 Welcome to the extraordinary Codex Leicester AI Chat App! 🤖🗣️ Immerse yourself in this enchanting application that brings the boundless power of the Codex Leicester model to your fingertips. Experience a seamless and intelligent chatbot journey where you can engage in captivating conversations, pose intriguing questions, and explore the fascinating world of this advanced AI assistant.
 
+## Interactive Demo 🚀
+
+Experience the magic of Codex Leicester AI Chat App right now! Click [here](https://codexleicester.streamlit.app/) to launch the interactive demo and engage in captivating conversations with the intelligent Codex Leicester.
+
 ## Getting Started 🚀
 
 ### Clone the Repository
