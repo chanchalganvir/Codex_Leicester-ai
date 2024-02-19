@@ -38,19 +38,12 @@ with st.sidebar:
     st.markdown('<p style="font-family:monospace; color: Red;">Made by Chanchal C. Ganvir</p>', unsafe_allow_html=True)
 
 
-st.markdown('<p style="font-family:larg-cursive;font-size:40px; color:Green;text-shadow: 14 14 20px black;">Codex Leicester</p>', unsafe_allow_html=True)
+st.markdown('<p style="font-family:larg-cursive;font-size:40px; color:Green; background-color: #DAF7A6;text-shadow: 14 14 20px black;">Codex Leicester</p>', unsafe_allow_html=True)
 
 
-st.markdown(
-    """
-    <style>
-        body {
-            background-color: #DAF7A6;
-        }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
+
+            
+        
 
 def main():
 
