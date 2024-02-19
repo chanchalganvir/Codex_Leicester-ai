@@ -7,15 +7,6 @@ from langchain import PromptTemplate, HuggingFaceHub, LLMChain
 from dotenv import load_dotenv
 
 
-st.markdown(
-    """
-    <style>
-        body {
-            background-color: #DAF7A6;
-        }
-    </style>
-    """,
-    unsafe_allow_html=True
 )
 
 
@@ -28,7 +19,13 @@ with st.sidebar:
     st.title('Your personal AI')
     st.markdown('''
 
-    
+     <style>
+        body {
+            background-color: #DAF7A6;
+        }
+    </style>
+
+
    ## Be educated, be organised, and be agitated
 - [LAION-AI](https://laion.ai/)
     The LLM for Codex Leicester is trained using LAION-AI.
