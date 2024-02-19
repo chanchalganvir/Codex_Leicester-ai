@@ -7,7 +7,16 @@ from langchain import PromptTemplate, HuggingFaceHub, LLMChain
 from dotenv import load_dotenv
 
 
-
+st.markdown(
+    """
+    <style>
+        body {
+            background-color: #DAF7A6;
+        }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 
 
 # load the Environment Variables. 
