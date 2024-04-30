@@ -4,14 +4,11 @@ from streamlit_extras.colored_header import colored_header
 from streamlit_extras.add_vertical_space import add_vertical_space
 from langchain import PromptTemplate, HuggingFaceHub, LLMChain
 from dotenv import load_dotenv
-
-
-
-
+import time
 
 # load the Environment Variables. 
 load_dotenv()
-st.set_page_config(page_title="Codex Leicester Chat App")
+st.set_page_config(page_title="Codex Leicester Chat App", page_icon=":robot:", layout="wide")
 
 # Sidebar contents
 with st.sidebar:
@@ -25,19 +22,17 @@ with st.sidebar:
     
     ''')
 
-
-
-
-
     add_vertical_space(3)
     st.markdown('<p style="font-family:monospace; color: Red;">Made by Chanchal C. Ganvir</p>', unsafe_allow_html=True)
 
+    # Add a button to clear the chat history
+    if st.button("Clear Chat"):
+        st.session_state['generated'] = ["Hey there, great to meet you. I’m Codex Leicester, your personal AI. My goal is to be useful, friendly and providing information. Ask me for advice, for answers, or let’s talk about whatever’s on your mind. "]
+        st.session_state['user'] = ['Hi!']
 
 st.markdown('<p style="font-family:larg-cursive;font-size:40px; color:Green;text-shadow: 14 14 20px black;">Codex Leicester</p>', unsafe_allow_html=True)
 
-
 def main():
-
     # Generate empty lists for generated and user.
     ## Assistant Response
     if 'generated' not in st.session_state:
@@ -62,23 +57,15 @@ def main():
         user_input = get_text()
 
     def chain_setup():
-
-
         template = """<|prompter|>{question}<|endoftext|>
         <|assistant|>"""
-
-
-
         prompt = PromptTemplate(template=template, input_variables=["question"])
-
         llm=HuggingFaceHub(repo_id="OpenAssistant/oasst-sft-4-pythia-12b-epoch-3.5", model_kwargs={"max_new_tokens":1200})
-
         llm_chain=LLMChain(
             llm=llm,
             prompt=prompt
         )
         return llm_chain
-
 
     # generate response
     def generate_response(question, llm_chain):
@@ -94,6 +81,7 @@ def main():
             response = generate_response(user_input, llm_chain)
             st.session_state.user.append(user_input)
             st.session_state.generated.append(response)
+            time.sleep(1)  # Add a delay to simulate a more human-like response
 
         if st.session_state['generated']:
             for i in range(len(st.session_state['generated'])):
