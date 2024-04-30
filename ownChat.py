@@ -5,6 +5,10 @@ from streamlit_extras.add_vertical_space import add_vertical_space
 from langchain import PromptTemplate, HuggingFaceHub, LLMChain
 from dotenv import load_dotenv
 
+
+
+
+
 # load the Environment Variables. 
 load_dotenv()
 st.set_page_config(page_title="Codex Leicester Chat App")
@@ -20,6 +24,10 @@ with st.sidebar:
     The LLM for Codex Leicester is trained using LAION-AI.
     
     ''')
+
+
+
+
 
     add_vertical_space(3)
     st.markdown('<p style="font-family:monospace; color: Red;">Made by Chanchal C. Ganvir</p>', unsafe_allow_html=True)
@@ -52,23 +60,25 @@ def main():
     ## Applying the user input box
     with input_container:
         user_input = get_text()
-        st.button("Enter", on_click=main)
-        st.button("Clear History", on_click=clear_history)
-
-    def clear_history():
-        st.session_state['generated'] = []
-        st.session_state['user'] = []
 
     def chain_setup():
+
+
         template = """<|prompter|>{question}<|endoftext|>
         <|assistant|>"""
+
+
+
         prompt = PromptTemplate(template=template, input_variables=["question"])
+
         llm=HuggingFaceHub(repo_id="OpenAssistant/oasst-sft-4-pythia-12b-epoch-3.5", model_kwargs={"max_new_tokens":1200})
+
         llm_chain=LLMChain(
             llm=llm,
             prompt=prompt
         )
         return llm_chain
+
 
     # generate response
     def generate_response(question, llm_chain):
